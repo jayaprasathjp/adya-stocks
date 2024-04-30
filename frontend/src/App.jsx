@@ -6,12 +6,14 @@ import NavBar from './components/Navbar'
 import HeroSection from './components/hero-section'
 import RegisterPage from './components/auth/login'
 import MyStocks from './components/MyStocks'
+import Wallet from './components/Wallet'
 function App() {
 
   return (
     <>
     <Router>
       <NavBar/>
+      <Wallet/>
       <Routes>
         <Route path="/" element={ <HeroSection/>} />
         <Route path="/login" element={ <RegisterPage/>} />
