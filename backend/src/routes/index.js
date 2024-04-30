@@ -6,6 +6,7 @@ router.use("/buy", require("./buy.js"));
 router.use("/register", require("./register.js"));
 router.use("/sell", require("./sell.js"));
 router.use("/stocks", require("./stocks.js"));
-router.use("/addStock", require("./addStock"));
+router.use("/addStock", require("./addStock.js"));
+router.use("/myStocks", require("./myStocks.js"));
 
 module.exports = router;
