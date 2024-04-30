@@ -1,11 +1,10 @@
 import logo from './assest/logo.jpg'
-import './App.css'
 function App() {
   return (
     <>
     <div>
-    <div className="rounded-md">  
-      {/* Self-closing img tag with border styling */}
+    <div className="bg-dark"> 
+    fsdhvj,
       <img src={logo} alt="Logo" className=" rounded-md" />
     </div>
     <h1 className="">

@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  username    String        @unique
+  email       String        @unique
+  password    String
+  createdAt   DateTime      @default(now())
+  stocks      Stock[]
+  MyStocks MyStocks[]
+  wallet      Int
+}
+
+model Stock {
+  id           Int                 @id @default(autoincrement())
+  name         String
+  symbol       String              @unique
+  price        Float
+  owner        User?               @relation(fields: [ownerId], references: [id])
+  ownerId      Int?
+  createdAt    DateTime            @default(now())
+  myStocks     MyStocks[]
+  availability StockAvailability[]
+  totalStocks  Int
+  stockWallet  Int 
+}
+
+model MyStocks {
+  id        Int      @id @default(autoincrement())
+  type      String // "buy" or "sell"
+  quantity  Int
+  createdAt DateTime @default(now())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  stock     Stock    @relation(fields: [stockId], references: [id])
+  stockId   Int
+}
+
+model StockAvailability {
+  id        Int   @id @default(autoincrement())
+  stock     Stock @relation(fields: [stockId], references: [id])
+  stockId   Int
+  available Int
+}
