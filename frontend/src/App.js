@@ -1,18 +1,25 @@
-import logo from './assest/logo.jpg'
+import { useState } from 'react'
+import './App.css'
+import TopStocks from './components/TopStocks'
+import{ BrowserRouter as Router, Route,Routes, Navigate, NavLink } from 'react-router-dom'
+import NavBar from './components/Navbar'
+import HeroSection from './components/hero-section'
+import RegisterPage from './components/auth/login'
 function App() {
+
   return (
     <>
-    <div>
-    <div className="bg-dark"> 
-    fsdhvj,
-      <img src={logo} alt="Logo" className=" rounded-md" />
-    </div>
-    <h1 className="">
-      Hello world!
-    </h1>
-    </div>
+    <Router>
+      <NavBar/>
+      <Routes>
+        <Route path="/" element={ <HeroSection/>} />
+        <Route path="/login" element={ <RegisterPage/>} />
+        <Route path="/TopStocks" element={ <TopStocks/>} />
+      </Routes>
+    </Router>
+      
     </>
-  );
+  )
 }
 
-export default App;
+export default App
