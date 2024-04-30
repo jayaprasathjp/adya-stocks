@@ -5,7 +5,6 @@ const prisma = new PrismaClient();
 
 router.get("/", async (req, res) => {
   try {
-    // Retrieve all stocks with available quantities
     const availableStocks = await prisma.stock.findMany({
       where: {
         availability: {

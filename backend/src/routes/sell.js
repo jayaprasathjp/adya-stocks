@@ -7,7 +7,6 @@ router.post("/", async (req, res) => {
   const { userId, stockId, quantity } = req.body;
 
   try {
-    // Find the user
     const user = await prisma.user.findUnique({
       where: {
         id: userId,
@@ -17,22 +16,18 @@ router.post("/", async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-
-    // Find the stock
     const stock = await prisma.stock.findUnique({
       where: {
         id: stockId,
       },
       include: {
-        availability: true, // Include stock availability data
+        availability: true, 
       },
     });
 
     if (!stock) {
       return res.status(404).json({ error: "Stock not found" });
     }
-
-    // Check if the user owns enough quantity of the stock
     const userStock = await prisma.myStocks.findFirst({
       where: {
         userId: user.id,

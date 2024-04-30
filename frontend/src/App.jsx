@@ -5,6 +5,7 @@ import{ BrowserRouter as Router, Route,Routes, Navigate, NavLink } from 'react-r
 import NavBar from './components/Navbar'
 import HeroSection from './components/hero-section'
 import RegisterPage from './components/auth/login'
+import MyStocks from './components/MyStocks'
 function App() {
 
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={ <HeroSection/>} />
         <Route path="/login" element={ <RegisterPage/>} />
         <Route path="/TopStocks" element={ <TopStocks/>} />
+        <Route path="/mystocks" element={ <MyStocks/>} />
       </Routes>
     </Router>
       

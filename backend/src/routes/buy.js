@@ -8,7 +8,6 @@ router.post("/", async (req, res) => {
   const { userId, stockId, quantity } = req.body;
 
   try {
-    // Find the user
     const user = await prisma.user.findUnique({
       where: {
         id: userId,
@@ -19,13 +18,12 @@ router.post("/", async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Find the stock
     const stock = await prisma.stock.findUnique({
       where: {
         id: stockId,
       },
       include: {
-        availability: true, // Include stock availability data
+        availability: true, 
       },
     });
 
@@ -33,12 +31,10 @@ router.post("/", async (req, res) => {
       return res.status(404).json({ error: "Stock not found" });
     }
 
-    // Check if enough stock is available
     if (stock.availability[0].available < quantity) {
       return res.status(400).json({ error: "Insufficient stock available" });
     }
 
-    // Check if the user has already made a myStocks for this stock
     const existingMyStocks = await prisma.myStocks.findFirst({
       where: {
         userId: userId,
@@ -48,7 +44,6 @@ router.post("/", async (req, res) => {
 
     let myStocks;
     if (existingMyStocks) {
-      // Update existing myStocks
       myStocks = await prisma.myStocks.update({
         where: {
           id: existingMyStocks.id,
@@ -58,7 +53,6 @@ router.post("/", async (req, res) => {
         },
       });
     } else {
-      // Create new myStocks
       myStocks = await prisma.myStocks.create({
         data: {
           type: "buy",
@@ -71,7 +65,6 @@ router.post("/", async (req, res) => {
 
     console.log(myStocks);
 
-    // Reduce stock availability
     await prisma.stockAvailability.update({
       where: {
         id: stock.availability[0].id,

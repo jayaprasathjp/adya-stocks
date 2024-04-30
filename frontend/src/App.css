@@ -4,7 +4,9 @@
   padding: 2rem;
   
 }
-
+body{
+  background-color: #e2ebed;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

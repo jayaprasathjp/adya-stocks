@@ -9,7 +9,6 @@ router.post("/", async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    // Check if the user exists
     const user = await prisma.user.findUnique({
       where: {
         username,
@@ -20,13 +19,11 @@ router.post("/", async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Check if the password is correct
     const passwordMatch = password === user.password;
     if (!passwordMatch) {
       return res.status(401).json({ error: "Invalid password" });
     }
 
-    // If everything is correct, return the user data
     return res.json({ user });
   } catch (error) {
     console.error("Error logging in:", error);

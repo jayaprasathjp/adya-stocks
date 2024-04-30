@@ -7,7 +7,6 @@ router.post("/", async (req, res) => {
   const stockWallet = 0;
 
   try {
-    // Create the stock
     const newStock = await prisma.stock.create({
       data: {
         name,

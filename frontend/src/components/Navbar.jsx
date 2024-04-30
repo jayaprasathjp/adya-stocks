@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import images from "../images/images.png";
+import { Link } from "react-router-dom";
 const navigation = [
   { name: "ADYA STOCKS", href: "#", current: true },
   { name: "EXPLORE", href: "#", current: false },
@@ -55,6 +56,9 @@ export default function NavBar() {
                   </div>
                 </div>
               </div>
+              <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4 ">
+                    <Link to="/mystocks" className=" rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">MY STOCKS</Link> </div></div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"
