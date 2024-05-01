@@ -6,7 +6,7 @@ router.post("/", async (req, res) => {
   const {userId} = req.body;
 console.log(userId);
   try {
-    const userStocks = await prisma.mystocks.findMany({
+    const userStocks = await prisma.myStocks.findMany({
       where: {
         userId: userId
       }

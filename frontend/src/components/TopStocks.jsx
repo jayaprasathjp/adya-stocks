@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Popular from './Popular'
 import WatchList from './WatchList'
-
+import Navbar from './Navbar';
 const TopStocks = () => {
     const products = [
         {
@@ -36,7 +36,7 @@ const TopStocks = () => {
  
     return (
       <div className="bg-white">
-        
+        <Navbar/>
         <div className="flex flex-col pt-24">
  <h2 className='text-2xl font-bold tracking-tight text-gray-900'>Index</h2>
 <Popular/>

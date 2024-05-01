@@ -1,8 +1,10 @@
 import React from "react";
 import { Brand, FormInput, SubmitButton } from "./common";
 import { Link } from "react-router-dom";
+
 export default function LoginPage() {
   return (
+    <>
     <div className=" min-h-screen flex w-full flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-50">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white shadow-lg border py-12 rounded-xl p-4">
@@ -41,5 +43,6 @@ export default function LoginPage() {
         
       </div>
     </div>
+    </>
   );
 }
