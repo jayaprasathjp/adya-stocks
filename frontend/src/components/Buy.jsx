@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Swal from "sweetalert2";
 const Buy = () => {
   const user = localStorage.getItem("user");
   const userId=Number(JSON.parse(user).id);
@@ -65,6 +65,7 @@ console.log(userId);
   const imageUrl = "http://localhost:3001/imagestocks/files/"+stockInfo.info.StockImages;
 
   const handleBuy = async () => {
+   
     const data = await fetch("http://localhost:3001/buy", {
       method: "POST",
       headers: {
@@ -73,13 +74,30 @@ console.log(userId);
       body: JSON.stringify({ stockId: id, userId: userId, quantity }),
     });
     const response = await data.json();
-    if (response.myStocks && response.myStocks.stockId === id) {
-      fetchStockInfo();
-      fetchWalletAmount();
-      alert("Stock bought successfully");
-    } else {
-      alert("Error buying stocks", response.error);
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (response.myStocks && response.myStocks.stockId === id) {
+          fetchStockInfo();
+          fetchWalletAmount();
+          Swal.fire({
+            title: "Success!",
+            text: "Added to your stock.",
+            icon: "success"
+          });
+        } else {
+          alert("Error buying stocks", response.error);
+        }
+        
+      }
+    });
+    
   };
 
   return (

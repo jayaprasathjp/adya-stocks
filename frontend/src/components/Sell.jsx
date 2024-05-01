@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Swal from "sweetalert2";
 const Sell = () => {
   const searchParams = new URLSearchParams(window.location.search);
   const id = Number(searchParams.get("id"));
@@ -71,13 +71,28 @@ console.log();
       body: JSON.stringify({ myStockId:id, quantity }),
     });
     const response = await data.json();
-    if (response.status === "success") {
-      fetchStockInfo();
-      fetchWalletAmount();
-      alert("Stock bought successfully");
-    } else {
-      alert("Error buying stocks", response.error);
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (response.status === "success") {
+          fetchStockInfo();
+          fetchWalletAmount();
+          Swal.fire({
+            title: "Success!",
+            text: "Stock share sold",
+            icon: "success"
+          });
+        } else {
+          alert("Error buying stocks", response.error);
+        }}})
+         
+    
   };
 
   return (

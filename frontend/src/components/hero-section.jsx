@@ -21,7 +21,7 @@ export default function HeroSection() {
           <div className="flex flex-1 justify-end">
             <Link
               to="/login"
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>

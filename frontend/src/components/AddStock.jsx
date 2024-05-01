@@ -1,6 +1,4 @@
-
-
-
+import Swal from 'sweetalert2';
 import React, { useState  } from 'react';
 import {useNavigate} from "react-router-dom"
 
@@ -27,20 +25,34 @@ function AddStock() {
     for (let key in formData) {
       finaldata.append(key, formData[key]);
     }
-    console.log(finaldata);
-
-    try {
-      const response = await fetch("http://localhost:3001/addStock", {
-        method: "POST",
-        body: finaldata,
-      });
-      const result = await response.json();
-      if(result.status === "success"){
-        navigate("/TopStocks")
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!"
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch("http://localhost:3001/addStock", {
+            method: "POST",
+            body: finaldata,
+          });
+          const result = await response.json();
+          Swal.fire({
+            title: "Success!",
+            text: "Stock Added!",
+            icon: "success"
+          });
+          if(result.status === "success"){
+            navigate("/TopStocks")
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }})
+   
   };
 
   return (
