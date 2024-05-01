@@ -4,9 +4,9 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import adya from "../images/adya.png";
 import { Link } from "react-router-dom";
 const navigation = [
-  { name: "ADYA STOCKS", href: "#", current: true },
+  { name: "ADYA STOCKS", href: "/TopStocks", current: true },
   { name: "EXPLORE", href: "#", current: false },
-  { name: "INVESTMENTS", href: "#", current: false },
+  { name: "INVESTMENTS", href: "/myStocks", current: false },
 ];
 
 function classNames(...classes) {
@@ -38,9 +38,9 @@ export default function NavBar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.href}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
@@ -50,7 +50,7 @@ export default function NavBar() {
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>

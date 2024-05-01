@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Brand, FormInput, SubmitButton } from "./common";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 export default function RegisterPage() {
+  const navigate = useNavigate();
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    const response = await fetch("http://localhost:3001" + "/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const body = await response.json();
+    if (response.ok) {
+      console.log("Success:", body);
+      localStorage.setItem("user", JSON.stringify(body.user));
+      navigate("/TopStocks");
+    } else {
+      console.error("Error:", body);
+      alert(body.error);
+    }
+  };
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      navigate("/TopStocks");
+    }
+  });
   return (
     <div className=" min-h-screen flex w-full flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-50">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -16,12 +47,12 @@ export default function RegisterPage() {
 
           <div className="mt-8 ">
             <div className="py-8 px-4 sm:rounded-lg sm:px-10">
-              <form className="space-y-6" action="#" method="POST">
+              <form className="space-y-6" onSubmit={handleRegister}>
                 <FormInput
-                  id="name"
-                  name="name"
-                  type="name"
-                  autoComplete="name"
+                  id="usernamename"
+                  name="username"
+                  type="text"
+                  autoComplete="username"
                   placeholder="Name"
                 />
                 <FormInput
@@ -42,7 +73,12 @@ export default function RegisterPage() {
               </form>
             </div>
           </div>
-          <div className="ml-9">Already have an account? <Link className=" text-blue-500" to="/login">Login</Link></div>
+          <div className="ml-9">
+            Already have an account?{" "}
+            <Link className=" text-blue-500" to="/login">
+              Login
+            </Link>
+          </div>
 
         </div>
       </div>
