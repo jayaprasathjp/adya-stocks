@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
         username,
         email,
         password,
-        wallet: 10000,
+        wallet: 100000,
       },
     });
     newUser.password = undefined;
