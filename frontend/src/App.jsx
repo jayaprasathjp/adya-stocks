@@ -13,7 +13,6 @@ import NavBar from "./components/Navbar";
 import HeroSection from "./components/hero-section";
 import LoginPage from "./components/auth/login";
 import MyStocks from "./components/MyStocks";
-import Wallet from "./components/Wallet";
 import RegisterPage from "./components/auth/register";
 import AddStock from "./components/AddStock";
 import Buy from "./components/Buy";
