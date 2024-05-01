@@ -62,9 +62,7 @@ console.log(userId);
   }
 
   const { name, price, availability } = stockInfo.info;
-  const imageUrl =
-    stockInfo.image ||
-    "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg";
+  const imageUrl = "http://localhost:3001/imagestocks/files/"+stockInfo.info.StockImages;
 
   const handleBuy = async () => {
     const data = await fetch("http://localhost:3001/buy", {
@@ -88,13 +86,13 @@ console.log(userId);
     <>
       <div className="mt-10 ml-20 text-3xl font-extrabold ">{name} buying Information:</div>
     <div className="flex justify-center items-center h-[500px]">
-      <div className=" bg-slate-300 rounded-lg shadow-md p-4 mb-4 flex flex-col items-center justify-between h-[350px] w-[300px]">
+      <div className=" bg-slate-300 rounded-lg shadow-md p-4  mb-4 flex flex-col items-center justify-between h-[350px] w-[300px]">
         <div className="flex  flex-col item-center">
           {imageUrl && (
             <img
               src={imageUrl}
               alt={name}
-              className="w-20 mt-2 h-20 object-cover rounded-md"
+              className="w-20 mt-2 ml-10 h-20 object-cover rounded-md"
             />
           )}
           <div>

@@ -35,7 +35,7 @@ function MyStocks() {
                 className="w-full max-w-sm bg-white border border-gray-200 rounded-lg  dark:bg-gray-500 dark:border-gray-500"
               >
                   <img
-                    className="p-8 rounded-t-lg"
+                    className="p-8 h-32 w-32 rounded-t-lg"
                     src={imgUrl}
                     alt="product image"
                   />

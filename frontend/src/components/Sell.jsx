@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 const Sell = () => {
-  const userId = Number(sessionStorage.getItem("userId")) || 1;
   const searchParams = new URLSearchParams(window.location.search);
   const id = Number(searchParams.get("id"));
   const [loading, setLoading] = useState(true);
@@ -61,10 +60,8 @@ const Sell = () => {
   }
 
   const { name, price } = stockInfo.stock;
-  const imageUrl =
-    stockInfo.image ||
-    "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg";
-
+  const imageUrl = "http://localhost:3001/imagestocks/files/"+stockInfo.stock.StockImages;
+console.log();
   const handleSell = async () => {
     const data = await fetch("http://localhost:3001/sell", {
       method: "POST",
