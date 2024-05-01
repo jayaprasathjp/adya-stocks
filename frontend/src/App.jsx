@@ -9,11 +9,13 @@ import MyStocks from './components/MyStocks'
 import Wallet from './components/Wallet'
 import RegisterPage from './components/auth/register'
 import AddStock from './components/AddStock'
+import Buy from './components/Buy';
 function App() {
 
   return (
     <>
     <Router>
+      <NavBar/>
       <Routes>
         <Route path="/" element={ <HeroSection/>} />
         <Route path="/login" element={ <LoginPage/>} />
@@ -22,6 +24,7 @@ function App() {
         <Route path="/TopStocks" element={ <TopStocks/>} />
         <Route path="/mystocks" element={ <MyStocks/>} />
         <Route path="/addStocks" element={ <AddStock/>} />
+        <Route path="/Buy" element={ <Buy/>}/>
       </Routes>
       
     </Router>

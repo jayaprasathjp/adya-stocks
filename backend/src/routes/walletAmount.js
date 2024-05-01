@@ -5,9 +5,7 @@ const prisma = new PrismaClient();
 
 router.post("/", async (req, res) => {
   const {userId} = req.body;
-  console.log(userId);
   try {
-    // Retrieve all stocks with available quantities
     const user = await prisma.user.findFirst({
       where: {
         id:Number(userId)
