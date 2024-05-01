@@ -45,7 +45,7 @@ Note: If the backend URL port is changed, make sure to replace it in the fronten
    npx prisma db push
    ```
 
-3. Seed the database (optional):
+3. Seed the sample stocks to database (optional):
    ```
    node prisma/seed.js
    ```
