@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 const Buy = () => {
-  const userId = Number(sessionStorage.getItem("userId")) || 1;
+  const user = localStorage.getItem("user");
+  const userId=Number(JSON.parse(user).id);
   const searchParams = new URLSearchParams(window.location.search);
   const id = Number(searchParams.get("id"));
   const [loading, setLoading] = useState(true);
@@ -9,7 +10,7 @@ const Buy = () => {
   const [stockInfo, setStockInfo] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [walletAmount,setWalletAmount] = useState(0);
-
+console.log(userId);
   const fetchWalletAmount=async()=>{
     const res = await fetch("http://localhost:3001/walletAmount",{
       method: "POST",

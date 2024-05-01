@@ -20,9 +20,10 @@ export default function NavBar() {
     const user = localStorage.getItem("user");
     if (user) {
       setUser(JSON.parse(user));
-    }
-  }, []);
-
+    } else {
+      navigate("/login");
+}
+},[]);
   const handleLogout = () => {
     localStorage.removeItem("user");
     setUser(null);
