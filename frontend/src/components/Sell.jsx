@@ -103,9 +103,9 @@ const Sell = () => {
               <span className="text-gray-800 font-semibold">{"₹" + price}</span>
             </div>
             <div className="flex items-center">
-              <span className="text-gray-600 mr-2">Availability:</span>
+              <span className="text-gray-600 mr-2">Your share:</span>
               <span className="text-gray-800 font-semibold">
-                {stockInfo.quantity}
+                {stockInfo.quantity}%
               </span>
             </div>
           </div>

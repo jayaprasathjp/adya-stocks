@@ -61,7 +61,7 @@ return(
                 {product.price}
               </p>
               <p className="mt-1 bg-white rounded-md text-lg font-medium text-green-500">
-                {product.availability} available
+                Available share : {product.availability}%
               </p> 
             </Link>
           )})}

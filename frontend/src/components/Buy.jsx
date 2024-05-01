@@ -104,9 +104,9 @@ console.log(userId);
               <span className="text-gray-800 font-semibold">{"₹" + price}</span>
             </div>
             <div className="flex items-center">
-              <span className="text-gray-600 mr-2">Availability:</span>
+              <span className="text-gray-600 mr-2">Availabile share :</span>
               <span className="text-gray-800 font-semibold">
-                {availability[0].available}
+                {availability[0].available}%
               </span>
             </div>
           </div>
