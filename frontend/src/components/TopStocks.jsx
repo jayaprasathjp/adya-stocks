@@ -13,33 +13,36 @@ const TopStocks = () => {
     });
     data = await data.json();
     data = data.availableStocks.map((val) => {
+
+      const imgUrl = "http://localhost:3001/imagestocks/files/" + val.StockImages;
       return {
         id: val.id,
         name: val.name,
         href: "/Buy?id="+val.id,
         price: "₹" + val.price,
         availability: val.availability[0].available,
-        imageSrc:
-          "/imagestocks/files/"+val.StockImages,
-        imageAlt:
-          "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
-      };
-    });
+        imageSrc:imgUrl,
+          
+        imageAlt: 
+          "Stock Image",
+};
+});
     setProducts(data);
     }
     fn()
     
   }, []);
-
+console.log((products));
   return (
     <div className="bg-white">
       <h2 className="text-2xl ml-20 font-extrabold tracking-tight text-gray-900">
           Available Stocks
         </h2>
       <div className=" max-w-2xl ml-20  sm:py-10 lg:max-w-7xl lg:px-4">
-        
         <div className="bg-white text-center max-w-7xl px-4 py-16  sm:py-2  flex flex-wrap justify-start ">
-          {products.map((product) => (
+          {products.map((product) => {
+          
+return(
             <Link
               key={product.id}
               to={product.href}
@@ -61,7 +64,7 @@ const TopStocks = () => {
                 {product.availability} available
               </p> 
             </Link>
-          ))}
+          )})}
         </div>
       </div>
     </div>
