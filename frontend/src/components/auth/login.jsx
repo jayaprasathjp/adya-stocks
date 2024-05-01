@@ -1,7 +1,7 @@
 import React from "react";
 import { Brand, FormInput, SubmitButton } from "./common";
-
-export default function RegisterPage() {
+import { Link } from "react-router-dom";
+export default function LoginPage() {
   return (
     <div className=" min-h-screen flex w-full flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-50">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -34,8 +34,11 @@ export default function RegisterPage() {
                 <SubmitButton text="Sign in" />
               </form>
             </div>
+            
           </div>
+          <div className="ml-9">Don’t have an account yet? <Link className=" text-blue-500" to="/register">Sign up</Link></div>
         </div>
+        
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import adyaLogo from "../images/adya.png";
 export default function HeroSection() {
   return (
     <div className="isolate bg-white">
@@ -8,8 +8,8 @@ export default function HeroSection() {
           <div className="flex lg:flex-1">
             <Link to="/" className="flex items-center gap-4">
               <img
-                className="h-8"
-                src="https://adya.ai/assets/Logo-6c607c84.png"
+                className="h-8 w-8"
+                src={adyaLogo}
                 alt=""
               />
               <span className="font-bold text-lg text-gray-600">
@@ -45,7 +45,7 @@ export default function HeroSection() {
 
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <Link
-                  to="/TopStocks"
+                  to="/register"
                   className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Get started
