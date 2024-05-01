@@ -2,6 +2,14 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
+  const user = await prisma.user.create({
+    data: {
+        username: "johnDoe",
+        email: "john.doe@example.com",
+        password: "securePassword123", 
+        wallet: 150000,
+    },
+});
     const stocks = [
         { name: 'Apple Inc.', symbol: 'AAPL', price: 170.10, StockImages: 'apple.jpg', totalStocks: 100, stockWallet: 50000, available: 60 },
         { name: 'Microsoft Corporation', symbol: 'MSFT', price: 300.50, StockImages: 'microsoft.jpg', totalStocks: 100, stockWallet: 80000, available: 90 },
