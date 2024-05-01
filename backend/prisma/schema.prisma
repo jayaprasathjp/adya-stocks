@@ -12,7 +12,7 @@ model User {
   id          Int           @id @default(autoincrement())
   username    String        @unique
   email       String        @unique
-  password    String
+  password    String     
   createdAt   DateTime      @default(now())
   stocks      Stock[]
   MyStocks MyStocks[]
@@ -24,6 +24,7 @@ model Stock {
   name         String
   symbol       String              @unique
   price        Float
+  StockImages String   
   owner        User?               @relation(fields: [ownerId], references: [id])
   ownerId      Int?
   createdAt    DateTime            @default(now())

@@ -1,12 +1,10 @@
-import { useState } from "react";
+
 import "./App.css";
 import TopStocks from "./components/TopStocks";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
-  NavLink,
   useLocation,
 } from "react-router-dom";
 import NavBar from "./components/Navbar";
@@ -17,6 +15,8 @@ import RegisterPage from "./components/auth/register";
 import AddStock from "./components/AddStock";
 import Buy from "./components/Buy";
 import Sell from "./components/Sell";
+import ProfilePage from "./components/ProfilePage";
+
 function App() {
   const location = useLocation();
   const showNavBar = !["/", "/login", "/register"].includes(location.pathname);
@@ -32,6 +32,7 @@ function App() {
         <Route path="/Buy" element={<Buy />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Sell" element={ <Sell/>}/>
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </>

@@ -84,8 +84,10 @@ const Sell = () => {
   };
 
   return (
+    <>
+    <div className="mt-10 ml-20 text-3xl font-extrabold ">{name} selling Information:</div>
     <div className="flex justify-center items-center h-[500px]">
-      <div className="bg-white rounded-lg shadow-md p-4 mb-4 flex flex-col items-center justify-between h-[350px] w-[300px]">
+      <div className="bg-slate-300  rounded-lg shadow-md p-4 mb-4 flex flex-col items-center justify-between h-[350px] w-[300px]">
         <div className="flex flex-col items-center">
           {imageUrl && (
             <img
@@ -120,7 +122,7 @@ const Sell = () => {
           />
           <span>{quantity}</span>
         </div>
-        <div className="max-w-xl mx-auto p-4 border rounded-lg shadow-md">
+        <div className="max-w-xl bg-white mx-auto p-4 border rounded-lg shadow-md">
           <div className="flex items-center justify-center">
             <span className="text-lg font-semibold">Wallet Balance:</span>
             <span className="text-lg font-semibold ml-2">₹{walletAmount}</span>
@@ -134,6 +136,7 @@ const Sell = () => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 

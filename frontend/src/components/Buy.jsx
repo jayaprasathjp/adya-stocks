@@ -85,18 +85,20 @@ console.log(userId);
   };
 
   return (
+    <>
+      <div className="mt-10 ml-20 text-3xl font-extrabold ">{name} buying Information:</div>
     <div className="flex justify-center items-center h-[500px]">
-      <div className="bg-white rounded-lg shadow-md p-4 mb-4 flex flex-col items-center justify-between h-[350px] w-[300px]">
-        <div className="flex flex-col items-center">
+      <div className=" bg-slate-300 rounded-lg shadow-md p-4 mb-4 flex flex-col items-center justify-between h-[350px] w-[300px]">
+        <div className="flex  flex-col item-center">
           {imageUrl && (
             <img
               src={imageUrl}
               alt={name}
-              className="w-20 h-20 object-cover rounded-md mr-4"
+              className="w-20 mt-2 h-20 object-cover rounded-md"
             />
           )}
           <div>
-            <h2 className="text-xl font-bold mb-2">{name}</h2>
+            <h2 className="text-xl font-bold mb-2 text-center">{name}</h2>
             <div className="flex items-center">
               <span className="text-gray-600 mr-2">Price:</span>
               <span className="text-gray-800 font-semibold">{"₹" + price}</span>
@@ -121,7 +123,7 @@ console.log(userId);
           />
           <span>{quantity}</span>
         </div>
-        <div className="max-w-xl mx-auto p-4 border rounded-lg shadow-md">
+        <div className=" bg-white max-w-xl mx-auto p-4 border rounded-lg shadow-md">
           <div className="flex items-center justify-center">
             <span className="text-lg font-semibold">Wallet Balance:</span>
             <span className="text-lg font-semibold ml-2">₹{walletAmount}</span>
@@ -135,6 +137,7 @@ console.log(userId);
         </button>
       </div>
     </div>
+    </>
   );
 };
 

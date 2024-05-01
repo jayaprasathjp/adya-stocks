@@ -11,4 +11,7 @@ router.use("/myStocks", require("./myStocks.js"));
 router.use("/stockInfo", require("./stockInfo.js"));
 router.use("/walletAmount", require("./walletAmount.js"));
 router.use("/myStockInfo", require("./myStockInfo.js"));
+router.use("/updateWallet", require("./updateWallet.js"));
+router.use("/imagestocks", require("./imagestocks.js"));
+
 module.exports = router;
