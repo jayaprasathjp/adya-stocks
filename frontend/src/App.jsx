@@ -1,5 +1,4 @@
 
-import "./App.css";
 import TopStocks from "./components/TopStocks";
 import {
   BrowserRouter as Router,
