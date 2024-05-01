@@ -53,30 +53,6 @@ async function main() {
       },
     },
   });
-
-  // Seed transactions (optional)
-  // const transaction1 = await prisma.transaction.create({
-  //   data: {
-  //     type: 'buy',
-  //     quantity: 10,
-  //     price: 10.50,
-  //     total: 105.00,
-  //     userId: user1.id,
-  //     stockId: stock1.id,
-  //   },
-  // });
-
-  // const transaction2 = await prisma.transaction.create({
-  //   data: {
-  //     type: 'sell',
-  //     quantity: 5,
-  //     price: 20.75,
-  //     total: 103.75,
-  //     userId: user2.id,
-  //     stockId: stock2.id,
-  //   },
-  // });
-
   console.log("Seeding completed");
 }
 

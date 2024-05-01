@@ -57,7 +57,7 @@ const TopStocks = () => {
                <p className="mt-1 text-lg font-medium text-gray-900">
                 {product.price}
               </p>
-              <p className="mt-1 text-lg font-medium text-red-500">
+              <p className="mt-1 text-lg font-medium text-green-500">
                 {product.availability}
               </p> 
             </Link>

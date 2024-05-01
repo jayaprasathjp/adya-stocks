@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
         wallet: 1000,
       },
     });
-
+    newUser.password = undefined;
     return res.json({ user: newUser });
   } catch (error) {
     console.error("Error registering user:", error);

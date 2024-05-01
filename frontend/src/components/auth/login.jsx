@@ -50,11 +50,11 @@ export default function LoginPage() {
               <div className="py-8 px-4 sm:rounded-lg sm:px-10">
                 <form className="space-y-6" onSubmit={handleLogin}>
                   <FormInput
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    placeholder="Email address"
+                    id="username"
+                    name="username"
+                    type="text"
+                    autoComplete="username"
+                    placeholder="Username or Email"
                   />
                   <FormInput
                     id="password"
@@ -73,7 +73,6 @@ export default function LoginPage() {
                 Sign up
               </Link>
             </div>
-
           </div>
         </div>
       </div>

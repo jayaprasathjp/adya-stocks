@@ -1,36 +1,40 @@
-import { useState } from 'react'
-import './App.css'
-import TopStocks from './components/TopStocks'
-import{ BrowserRouter as Router, Route,Routes, Navigate, NavLink } from 'react-router-dom'
-import NavBar from './components/Navbar'
-import HeroSection from './components/hero-section'
-import LoginPage from './components/auth/login'
-import MyStocks from './components/MyStocks'
-import Wallet from './components/Wallet'
-import RegisterPage from './components/auth/register'
-import AddStock from './components/AddStock'
-import Buy from './components/Buy';
+import { useState } from "react";
+import "./App.css";
+import TopStocks from "./components/TopStocks";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+  NavLink,
+  useLocation,
+} from "react-router-dom";
+import NavBar from "./components/Navbar";
+import HeroSection from "./components/hero-section";
+import LoginPage from "./components/auth/login";
+import MyStocks from "./components/MyStocks";
+import Wallet from "./components/Wallet";
+import RegisterPage from "./components/auth/register";
+import AddStock from "./components/AddStock";
+import Buy from "./components/Buy";
 function App() {
+  const location = useLocation();
+  const showNavBar = !["/", "/login", "/register"].includes(location.pathname);
 
   return (
     <>
-    <Router>
-      <NavBar/>
+      {showNavBar && <NavBar />}
       <Routes>
-        <Route path="/" element={ <HeroSection/>} />
-        <Route path="/login" element={ <LoginPage/>} />
-        <Route path="/Register" element={ <RegisterPage/>} />
-        
-        <Route path="/TopStocks" element={ <TopStocks/>} />
-        <Route path="/myStocks" element={ <MyStocks/>} />
-        <Route path="/addStocks" element={ <AddStock/>} />
-        <Route path="/Buy" element={ <Buy/>}/>
+        <Route path="/" element={<HeroSection />} />
+        <Route path="/TopStocks" element={<TopStocks />} />
+        <Route path="/myStocks" element={<MyStocks />} />
+        <Route path="/addStocks" element={<AddStock />} />
+        <Route path="/Buy" element={<Buy />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
-      
-    </Router>
-      
     </>
-  )
+  );
 }
 
-export default App
+export default App;

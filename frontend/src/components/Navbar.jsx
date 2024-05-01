@@ -1,8 +1,8 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import adya from "../images/adya.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const navigation = [
   { name: "ADYA STOCKS", href: "/TopStocks", current: true },
   { name: "EXPLORE", href: "#", current: false },
@@ -14,6 +14,21 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/login");
+  };
+
   return (
     <Disclosure as="nav" className="bg-white">
       {({ open }) => (
@@ -56,8 +71,15 @@ export default function NavBar() {
                 </div>
               </div>
               <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4 ">
-                    <Link to="/mystocks" className=" rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white">MY STOCKS</Link> </div></div>
+                <div className="flex space-x-4 ">
+                  <Link
+                    to="/mystocks"
+                    className=" rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white"
+                  >
+                    MY STOCKS
+                  </Link>{" "}
+                </div>
+              </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"
@@ -74,7 +96,7 @@ export default function NavBar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={`https://avatar.vercel.sh/${user?.email}`}
                         alt=""
                       />
                     </Menu.Button>
@@ -117,15 +139,15 @@ export default function NavBar() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <span
+                            onClick={handleLogout}
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
                             Sign out
-                          </a>
+                          </span>
                         )}
                       </Menu.Item>
                     </Menu.Items>

@@ -11,10 +11,17 @@ router.post("/", async (req, res) => {
   try {
     const user = await prisma.user.findFirst({
       where: {
-        username,
+        OR: [
+          {
+            username,
+          },
+          {
+            email: username,
+          },
+        ],
       },
     });
-
+    console.log(user);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -23,7 +30,7 @@ router.post("/", async (req, res) => {
     if (!passwordMatch) {
       return res.status(401).json({ error: "Invalid password" });
     }
-
+    user.password = undefined;
     return res.json({ user });
   } catch (error) {
     console.error("Error logging in:", error);
