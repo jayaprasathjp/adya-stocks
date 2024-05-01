@@ -2,10 +2,21 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { WalletIcon } from "@heroicons/react/24/outline";
+import Swal from "sweetalert2";
 export default function ProfilePage() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
+    // const userId= Number(JSON.parse(localStorage.getItem("user")).id);
+    // const response =  fetch("http://localhost:3001/walletAmount", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ userId }),
+    // });
+    // const data =  response.json();
+    // console.log(data.amount);
     const user = localStorage.getItem("user");
     if (user) {
       setUser(JSON.parse(user));
@@ -16,28 +27,50 @@ export default function ProfilePage() {
 
   const handleAddAmount = async (e) => {
     e.preventDefault();
+    
     const amount = e.target[0].value;
     const userId = user.id;
-    const response = await fetch("http://localhost:3001/walletAmount", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId }),
-    });
-    const data = await response.json();
-    const wallet = data.amount + Number(amount);
-    const updateResponse = await fetch("http://localhost:3001/updateWallet", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId, amount: wallet }),
-    });
-    const updateData = await updateResponse.json();
-    setUser((prevUser) => ({ ...prevUser, wallet: updateData.wallet }));
-  };
-
+  
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!"
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        const response = await fetch("http://localhost:3001/walletAmount", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId }),
+        });
+        let data = await response.json();
+        const wallet = data.amount + Number(amount);
+        const updateResponse = await fetch("http://localhost:3001/updateWallet", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId, amount: wallet }),
+        });
+        const updateData = await updateResponse.json();
+        setUser((prevUser) => ({ ...prevUser, wallet: updateData.wallet }));
+        Swal.fire({
+          title: "Success!",
+          text: "Amount is added to wallet",
+          icon: "success"
+        });
+        if(result.status === "success"){
+          navigate("/TopStocks")
+        }
+      }    
+         
+       
+      })
+    }
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
