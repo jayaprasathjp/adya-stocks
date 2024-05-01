@@ -36,7 +36,7 @@ model Stock {
 
 model MyStocks {
   id        Int      @id @default(autoincrement())
-  type      String // "buy" or "sell"
+  type      String 
   quantity  Int
   createdAt DateTime @default(now())
   userId    Int

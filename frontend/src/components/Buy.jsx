@@ -110,7 +110,6 @@ console.log(userId);
           </div>
         </div>
         <div className="flex items-center">
-          {/* Slider for choosing quantity */}
           <input
             type="range"
             min="1"

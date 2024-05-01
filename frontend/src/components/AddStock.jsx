@@ -38,7 +38,6 @@ function AddStock() {
       if(result.status === "success"){
         navigate("/TopStocks")
       }
-      // Handle success or failure
     } catch (error) {
       console.log(error);
     }
