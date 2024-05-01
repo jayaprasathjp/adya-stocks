@@ -3,25 +3,18 @@ const { Router } = require("express");
 const router = Router();
 const prisma = new PrismaClient();
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
+  const {userId} = req.body;
+  console.log(userId);
   try {
     // Retrieve all stocks with available quantities
-    const availableStocks = await prisma.stock.findMany({
+    const user = await prisma.user.findFirst({
       where: {
-        availability: {
-          some: {
-            available: {
-              gt: 0,
-            },
-          },
-        },
-      },
-      include:{
-        availability:true
+        id:Number(userId)
       }
     });
 
-    return res.json({ availableStocks });
+    return res.json({ "amount":user.wallet });
   } catch (error) {
     console.error("Error fetching available stocks:", error);
     return res.status(500).json({ error: "Internal server error" });

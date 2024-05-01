@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 router.post("/", async (req, res) => {
   const { name, symbol, price, totalStocks, ownerId } = req.body;
   const stockWallet = 0;
-
+price=floatprice;
   try {
     const newStock = await prisma.stock.create({
       data: {

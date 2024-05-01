@@ -8,6 +8,7 @@ import LoginPage from './components/auth/login'
 import MyStocks from './components/MyStocks'
 import Wallet from './components/Wallet'
 import RegisterPage from './components/auth/register'
+import AddStock from './components/AddStock'
 function App() {
 
   return (
@@ -20,6 +21,7 @@ function App() {
         
         <Route path="/TopStocks" element={ <TopStocks/>} />
         <Route path="/mystocks" element={ <MyStocks/>} />
+        <Route path="/addStocks" element={ <AddStock/>} />
       </Routes>
       
     </Router>
