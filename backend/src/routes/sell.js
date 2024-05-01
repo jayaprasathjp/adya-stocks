@@ -4,60 +4,35 @@ const router = Router();
 const prisma = new PrismaClient();
 
 router.post("/", async (req, res) => {
-  const { userId, stockId, quantity } = req.body;
+  const { myStockId, quantity } = req.body;
 
   try {
-    const user = await prisma.user.findUnique({
-      where: {
-        id: userId,
-      },
-    });
 
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
-    const stock = await prisma.stock.findUnique({
-      where: {
-        id: stockId,
-      },
-      include: {
-        availability: true, 
-      },
-    });
-
-    if (!stock) {
-      return res.status(404).json({ error: "Stock not found" });
-    }
     const userStock = await prisma.myStocks.findFirst({
       where: {
-        userId: user.id,
-        stockId: stock.id,
-        type: "buy",
+        id:myStockId
       },
-      select: {
-        quantity: true,
-      },
+      include:{
+        stock:{
+          include:{
+            availability:true
+          }
+        },
+        user:true
+      }
     });
     if (!userStock || userStock.quantity < quantity) {
       return res.status(400).json({ error: "Insufficient stock to sell" });
     } else if (userStock.quantity === quantity) {
       await prisma.myStocks.delete({
         where: {
-          userId_stockId_type: {
-            userId: user.id,
-            stockId: stock.id,
-            type: "buy",
-          },
+          id:myStockId
         },
       });
     } else if (userStock.quantity > quantity) {
       await prisma.myStocks.update({
         where: {
-          userId_stockId_type: {
-            userId: user.id,
-            stockId: stock.id,
-            type: "buy",
-          },
+          id:myStockId
         },
         data: {
           quantity: {
@@ -68,7 +43,7 @@ router.post("/", async (req, res) => {
     }
     await prisma.stockAvailability.update({
       where: {
-        id: stock.availability[0].id,
+        id: userStock.stock.availability[0].id
       },
       data: {
         available: {
@@ -77,20 +52,20 @@ router.post("/", async (req, res) => {
       },
     });
 
-    const price = stock.price;
-    const stockwallet = stock.stockWallet;
+    const price = userStock.stock.price
+    const stockwallet = userStock.stock.stockWallet;
     await prisma.stock.update({
       where: {
-        id: stockId,
+        id: userStock.stockId,
       },
       data: {
         stockWallet: stockwallet - price * quantity,
       },
     });
-    const userWallet = user.wallet;
+    const userWallet = userStock.user.wallet;
     await prisma.user.update({
       where: {
-        id: userId,
+        id: userStock.userId,
       },
       data: {
         wallet: userWallet + price * quantity,

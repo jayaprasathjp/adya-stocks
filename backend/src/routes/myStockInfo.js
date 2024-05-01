@@ -3,12 +3,11 @@ const { Router } = require("express");
 const router = Router();
 const prisma = new PrismaClient();
 router.post("/", async (req, res) => {
-  const {userId} = req.body;
-console.log(userId);
+  const {myStockId} = req.body;
   try {
-    const userStocks = await prisma.myStocks.findMany({
+    const userStocks = await prisma.myStocks.findFirst({
       where: {
-        userId: userId
+        id:myStockId
       },
       include:{
         stock:true

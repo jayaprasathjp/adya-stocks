@@ -17,6 +17,7 @@ import Wallet from "./components/Wallet";
 import RegisterPage from "./components/auth/register";
 import AddStock from "./components/AddStock";
 import Buy from "./components/Buy";
+import Sell from "./components/Sell";
 function App() {
   const location = useLocation();
   const showNavBar = !["/", "/login", "/register"].includes(location.pathname);
@@ -31,6 +32,7 @@ function App() {
         <Route path="/addStocks" element={<AddStock />} />
         <Route path="/Buy" element={<Buy />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/Sell" element={ <Sell/>}/>
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </>

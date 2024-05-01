@@ -10,5 +10,5 @@ router.use("/addStock", require("./addStock.js"));
 router.use("/myStocks", require("./myStocks.js"));
 router.use("/stockInfo", require("./stockInfo.js"));
 router.use("/walletAmount", require("./walletAmount.js"));
-
+router.use("/myStockInfo", require("./myStockInfo.js"));
 module.exports = router;

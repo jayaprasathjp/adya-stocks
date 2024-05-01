@@ -5,7 +5,7 @@ import adya from "../images/adya.png";
 import { Link, useNavigate } from "react-router-dom";
 const navigation = [
   { name: "ADYA STOCKS", href: "/TopStocks", current: true },
-  { name: "EXPLORE", href: "#", current: false },
+  { name: "EXPLORE", href: "/", current: false },
   { name: "INVESTMENTS", href: "/myStocks", current: false },
 ];
 
