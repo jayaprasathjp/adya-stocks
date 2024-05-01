@@ -57,7 +57,7 @@ const Sell = () => {
   }
 
   if (!stockInfo) {
-    return <div>No stock information available</div>;
+    return <div className="ml-20 my-200 text-red-600  text-5xl ">Stock is Empty!</div>;
   }
 
   const { name, price } = stockInfo.stock;

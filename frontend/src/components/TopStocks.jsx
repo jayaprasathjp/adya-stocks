@@ -34,11 +34,12 @@ const TopStocks = () => {
 
   return (
     <div className="bg-white">
-      <div className=" max-w-2xl  sm:py-24 lg:max-w-7xl lg:px-4">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-          Most Popular
+      <h2 className="text-2xl ml-20 font-extrabold tracking-tight text-gray-900">
+          Available Stocks
         </h2>
-        <div className="bg-white text-center  mx-auto max-w-7xl px-4 py-16  sm:py-2  flex flex-wrap justify-start ">
+      <div className=" max-w-2xl ml-20  sm:py-24 lg:max-w-7xl lg:px-4">
+        
+        <div className="bg-white text-center max-w-7xl px-4 py-16  sm:py-2  flex flex-wrap justify-start ">
           {products.map((product) => (
             <Link
               key={product.id}

@@ -24,7 +24,7 @@ function MyStocks() {
   console.log(myStocks);
   return (
     <>
-      <div className="">MY STOCKS</div>
+      <div className="m-10 ml-20 text-3xl font-extrabold ">MY STOCKS</div>
       <div className="ml-20 mt-10">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {myStocks.map((stock, index) => {
@@ -68,6 +68,7 @@ function MyStocks() {
               </div>
             );
           })}
+          {myStocks.length==0&&(<div className="mx-100 my-200 text-red-600  text-5xl">No stock available!</div>)}
         </div>
       </div>
     </>
